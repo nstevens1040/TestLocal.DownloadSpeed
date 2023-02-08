@@ -27,8 +27,8 @@
         public Double contentLength;
         public Double contentLengthMB;
         public Font SegoeUI = new Font("-apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"", 14);
-        public string uri = "https://speed.hetzner.de/1GB.bin";
-        public string filepath = Environment.GetEnvironmentVariable("TEMP") + Path.DirectorySeparatorChar + new Uri("https://speed.hetzner.de/1GB.bin").Segments.Last();
+        public string uri = "http://ipv4.download.thinkbroadband.com:8080/512MB.zip";
+        public string filepath = Environment.GetEnvironmentVariable("TEMP") + Path.DirectorySeparatorChar + new Uri("http://ipv4.download.thinkbroadband.com:8080/512MB.zip").Segments.Last();
         public Double inMegabits = 0;
         public Button button2;
         private void button1_Click(object sender, EventArgs e)
@@ -52,7 +52,7 @@
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            this.uri = ChangeUri.Dialog("Enter your direct download link below.", "Change Download Link", "https://speed.hetzner.de/1GB.bin");
+            this.uri = ChangeUri.Dialog("Enter your direct download link below.", "Change Download Link", "http://ipv4.download.thinkbroadband.com:8080/512MB.zip");
             this.filepath = Environment.GetEnvironmentVariable("TEMP") + Path.DirectorySeparatorChar + new Uri(this.uri).Segments.Last();
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(this.uri);
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36";
