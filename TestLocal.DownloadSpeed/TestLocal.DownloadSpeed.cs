@@ -27,8 +27,8 @@
         public Double contentLength;
         public Double contentLengthMB;
         public Font SegoeUI = new Font("-apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"", 14);
-        public string uri = "http://ipv4.download.thinkbroadband.com:8080/512MB.zip";
-        public string filepath = Environment.GetEnvironmentVariable("TEMP") + Path.DirectorySeparatorChar + new Uri("http://ipv4.download.thinkbroadband.com:8080/512MB.zip").Segments.Last();
+        public string uri = "https://beserver.nanick.org:7777/download_test.bin";
+        public string filepath = Environment.GetEnvironmentVariable("TEMP") + Path.DirectorySeparatorChar + new Uri("https://beserver.nanick.org:7777/download_test.bin").Segments.Last();
         public Double inMegabits = 0;
         public Button button2;
         private void button1_Click(object sender, EventArgs e)
@@ -52,7 +52,7 @@
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            this.uri = ChangeUri.Dialog("Enter your direct download link below.", "Change Download Link", "http://ipv4.download.thinkbroadband.com:8080/512MB.zip");
+            this.uri = ChangeUri.Dialog("Enter your direct download link below.", "Change Download Link", "https://beserver.nanick.org:7777/download_test.bin");
             this.filepath = Environment.GetEnvironmentVariable("TEMP") + Path.DirectorySeparatorChar + new Uri(this.uri).Segments.Last();
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(this.uri);
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36";
@@ -66,7 +66,7 @@
                 this.label25 = new Label()
                 {
                     Left = 130,
-                    Top = 42,
+                    Top = 50,
                     Text = " / ",
                     ForeColor = Color.FromName("White"),
                     BackColor = Color.FromName("Black"),
@@ -81,7 +81,7 @@
                 this.label2 = new Label()
                 {
                     Left = 170,
-                    Top = 42,
+                    Top = 50,
                     Text = this.contentLengthMB.ToString("00.00") + " MB",
                     ForeColor = Color.FromName("Chartreuse"),
                     BackColor = Color.FromName("Black"),
@@ -94,7 +94,7 @@
                 this.label2.BringToFront();
                 this.ProgressBar1 = new ProgressBar()
                 {
-                    Top = 74,
+                    Top = 79,
                     Left = 10,
                     Width = 400,
                     Height = 25,
@@ -259,7 +259,7 @@
             this.label4 = new Label()
             {
                 AutoSize = false,
-                Top = 106,
+                Top = 109,
                 Left = 10,
                 Text = "Your average download speed is: ",
                 ForeColor = Color.FromName("White"),
@@ -275,7 +275,7 @@
             this.label5 = new Label()
             {
                 AutoSize = false,
-                Top = 106,
+                Top = 109,
                 Left = 320,
                 Text = "",
                 ForeColor = Color.FromName("Chartreuse"),
@@ -301,7 +301,7 @@
                 {
                     AutoSize = false,
                     Left = 130,
-                    Top = 42,
+                    Top = 50,
                     Text = " / ",
                     ForeColor = Color.FromName("White"),
                     BackColor = Color.FromName("Black"),
@@ -317,7 +317,7 @@
                 {
                     AutoSize = false,
                     Left = 170,
-                    Top = 42,
+                    Top = 50,
                     Text = this.contentLengthMB.ToString("00.00") + " MB",
                     ForeColor = Color.FromName("Chartreuse"),
                     BackColor = Color.FromName("Black"),
@@ -330,7 +330,7 @@
                 this.label2.BringToFront();
                 this.ProgressBar1 = new ProgressBar()
                 {
-                    Top = 74,
+                    Top = 79,
                     Left = 10,
                     Width = 400,
                     Height = 25,
@@ -353,7 +353,7 @@
                 Top = 10,
                 Left = 10,
                 Width = 125,
-                Height = 30,
+                Height = 35,
                 Enabled = true
             };
             this.button1.Click += new EventHandler(button1_Click);
@@ -365,7 +365,7 @@
             this.label1 = new Label()
             {
                 AutoSize = false,
-                Top = 42,
+                Top = 50,
                 Left = 10,
                 Text = "--.-- MB",
                 ForeColor = Color.FromName("Chartreuse"),
@@ -381,7 +381,7 @@
             this.label3 = new Label()
             {
                 AutoSize = false,
-                Top = 42,
+                Top = 50,
                 Left = 290,
                 Text = "--.-- Mbps",
                 ForeColor = Color.FromName("Chartreuse"),
@@ -404,7 +404,7 @@
                 Top = 10,
                 Left = 10,
                 Width = 100,
-                Height = 30,
+                Height = 35,
                 Enabled = false,
                 Visible = false
             };
@@ -421,7 +421,7 @@
                 Top = 10,
                 Left = 150,
                 Width = 215,
-                Height = 30,
+                Height = 35,
                 Enabled = true,
                 Visible = true
             };
@@ -498,7 +498,7 @@
         {
             if (String.IsNullOrEmpty(textBox.Text))
             {
-                downloaduri = "https://speed.hetzner.de/1GB.bin";
+                downloaduri = "https://beserver.nanick.org:7777/download_test.bin";
             }
             else
             {
@@ -538,7 +538,7 @@
         }
         public static void DialogCancel(object sender, EventArgs e)
         {
-            downloaduri = "https://speed.hetzner.de/1GB.bin";
+            downloaduri = "https://beserver.nanick.org:7777/download_test.bin";
             prompt.Close();
         }
         public static string Dialog(string text, string caption, string phold = null)
