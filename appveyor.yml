@@ -1,0 +1,53 @@
+version: 1.0.{build}
+image: Visual Studio 2022
+before_build:
+- nuget restore
+# - choco install opencover.portable
+# - choco install codecov
+nuget:
+  project_feed: true
+build:
+  publish_nuget: true
+  include_nuget_references: true
+  verbosity: normal
+  project: TestLocal.DownloadSpeed.sln
+# test_script:
+# - OpenCover.Console.exe -register:user -filter:"+[Execute*]* -[*]*.Properties.*" -target:"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" -targetargs:"C:\projects\execute-httprequest-scamo\UnitTests\bin\Debug\UnitTests.dll" -output:.\codecov_results.xml
+# - codecov -f .\codecov_results.xml
+#deploy:
+#  provider: https://ci.appveyor.com/nuget/execute-httprequest-tcrs65r3r7uh
+#  api_key:
+#    secure: FodyM5fyWKh4OyrkaIMa93LYWXXlg8Zy7zZbWaQmh5s=
+#  skip_symbols: true
+#  symbol_server:           # remove to push symbols to SymbolSource.org
+#  artifact: /.*(\.|\.s)nupkg/
+#deploy:
+#  provider: https://ci.appveyor.com/nuget/execute-httprequest-tcrs65r3r7uh
+#  api_key:
+#    secure: FodyM5fyWKh4OyrkaIMa93LYWXXlg8Zy7zZbWaQmh5s=
+#  skip_symbols: true
+#  symbol_server:           # remove to push symbols to SymbolSource.org
+#  artifact: /.*(\.|\.s)nupkg/
+deploy:
+  - provider: NuGet
+    server: https://nuget.pkg.github.com/nstevens1040/index.json
+    artifact: /.nupkg/
+    username: nstevens1040
+    api_key:
+      secure: f+MLRpFFOj9kyNxbFyIt2n5I/dR48bmJ6qXRB/ageJ/18o61FDhu61IZgwk9KfqD
+  - provider: GitHub
+    tag: v1.0.5
+    release: v1.0.5 stable
+    description: 'Pushing TestLocal.DownloadSpeed.exe'
+    auth_token:
+      secure: ElzOGqa44YRqwJ9jKgjBNDbPEmxb1Mg3I+0TxsPQg8OdUSOA8T8DwkwoKofTXMQT
+    artifact: /.*\.exe/ 
+    draft: false
+    prerelease: false
+artifacts:
+  - path: .\TestLocal.DownloadSpeed\bin\x64\Release\TestLocal.DownloadSpeed.exe
+    name: TestLocal.DownloadSpeed.exe
+    type: File
+after_build:
+- ps: >-
+    "Push-AppveyorArtifact C:\projects\testlocal-downloadspeed\TestLocal.DownloadSpeed\bin\x64\Release\TestLocal.DownloadSpeed.exe -FileName TestLocal.DownloadSpeed.exe"
